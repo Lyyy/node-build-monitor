@@ -17,7 +17,7 @@
 
 .custom-theme .medium-height {
     line-height: 40px;
-    height: 40px;
+    height: 60px;
 }
 
 .custom-theme .reset-height {
@@ -35,14 +35,17 @@
 .custom-theme .flex-item {
   float: left;
   width: 25%;
+  height: 20%;
   color: transparent;
   position: relative;
+  display: flex;
 }
 
 .custom-theme .flex-item-inner {
   background: transparent;
-  margin: 25px;
-  padding: 25px;
+  margin: 2%;
+  padding: 4%;
+  width: 100%;
   box-shadow: 0px 0px 25px 8px rgba(0,0,0,0.8);
 }
 
@@ -70,7 +73,7 @@
 
 .custom-theme .flex-item .info-block {
   float: left;
-  font-size: 30pt;
+  font-size: 25pt;
 }
 
 .custom-theme .flex-item .project {
@@ -88,16 +91,23 @@
 
 .custom-theme .flex-item .number {
   font-size: 25pt;
+  position: absolute;
+  top: 10px;
 }
 
 .custom-theme .flex-item .duration-block {
   float: right;
-  font-size: 10pt;
+  font-size: 13pt;
+}
+
+.custom-theme .flex-item .duration-block-inner {
+  float: right;
+  width: auto;
 }
 
 .custom-theme .flex-item .duration-icon {
   font-size: 35px;
-  float: left;
+  float: right;
   margin-top: 3px;
 }
 
@@ -144,7 +154,9 @@
 }
 
 .prio-vertical-one {
-  padding-top: 70px;
+  position: absolute;
+  width: 90%;
+  bottom: 5%;
 }
 
 @media (max-height: 600px) {
