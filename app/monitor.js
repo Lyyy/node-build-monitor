@@ -18,9 +18,12 @@ var async = require('async'),
     sortBuilds = function (newBuilds, sortOrder, errorFirst) {
         if(sortOrder == "project") {
             newBuilds.sort(function (a, b) {
+                if(a.priority > b.priority) return 1;
+                if(a.priority < b.priority) return -1;
                 if(a.project > b.project) return 1;
                 if(a.project < b.project) return -1;
-
+                if(a.definition > b.definition) return 1;
+                if(a.definition < b.definition) return -1;
                 return 0;
             });
         }

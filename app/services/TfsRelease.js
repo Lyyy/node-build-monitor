@@ -16,6 +16,8 @@ function TfsRestRelease() {
   let project = null;
   let params = null;
   let groupbyrelease = null;
+  let label = null;
+  let priority = 0;
 
   /**
    * This object is the representation of resultFilter mentioned in the docs
@@ -61,6 +63,7 @@ function TfsRestRelease() {
    * @property {string} status The color to be used for displaying 
    * @property {string} statusText The status of the Release
    * @property {string} url URL of the project
+   * @property {int} priority display priority
    */
 
   /**
@@ -100,6 +103,8 @@ function TfsRestRelease() {
    * @property {string} pat Personal Access Token with access to Release
    *  information
    * @property {boolean} groupbyrelease Group builds by same release id
+   * @property {string} label Replace build name with label
+   * @property {int} priority Build priority
    */
 
   /**
@@ -126,6 +131,8 @@ function TfsRestRelease() {
     params = config.queryparams;
     project = config.project;
     groupbyrelease = config.groupbyrelease || false;
+    label = config.label || '';
+    priority = config.priority || 0;
 
     console.log(config);
   };
@@ -248,13 +255,14 @@ function TfsRestRelease() {
         id: groupbyrelease ? release.release.id : release.id,
         isRunning: release.deploymentStatus === resultFilter.inProgress,
         number: release.release.name,
-        project: release.releaseDefinition.name,
+        project: label == '' ? release.releaseDefinition.name : label,
         reason: release.reason,
         requestedFor: release.requestedFor.displayName,
         startedAt: new Date(release.queuedOn),
         status: colorScheme[resultFilter[release.deploymentStatus ? release.deploymentStatus : resultFilter.inProgress]],
         statusText: release.deploymentStatus ? release.deploymentStatus : resultFilter.inProgress,
-        url: release.release.webAccessUri
+        url: release.release.webAccessUri,
+        priority: priority
       };
 
       return result;

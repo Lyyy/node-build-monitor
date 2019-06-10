@@ -21,6 +21,8 @@ function VSTSRestBuilds() {
   let previousBuildsToGet = [];
   let apiVersion = null;
   let showBuildStep = null;
+  let label = null;
+  let priority = 0;
 
   /**
    * This object is the representation of resultFilter mentioned in the docs
@@ -97,6 +99,7 @@ function VSTSRestBuilds() {
    * @property {string} status The color to be used for displaying
    * @property {string} statusText The status of the build
    * @property {string} url URL of the project
+   * @property {int} priority display priority
    */
 
   /**
@@ -138,6 +141,8 @@ function VSTSRestBuilds() {
    * @property {boolean} includeQueued Show queued builds
    * @property {string} apiVersion The api version to use
    * @property {boolean} showBuildStep Adds the current build step to the statusString of the build variable
+   * @property {string} label Replace build name with label
+   * @property {int} priority Build priority
    */
 
   /**
@@ -167,7 +172,8 @@ function VSTSRestBuilds() {
     includeQueued = config.includeQueued || false;
     apiVersion = allowedAPIVersions[config.apiVersion] || '2.0';
     showBuildStep = config.showBuildStep || false;
-
+    label = config.label || '';
+    priority = config.priority || 0;
 
     console.log(config,apiVersion);
   };
@@ -298,7 +304,7 @@ function VSTSRestBuilds() {
         isRunning: build.status === statusFilter.inProgress,
         isQueued: build.status === statusFilter.notStarted,
         number: build.buildNumber,
-        project: getProjectName(build),
+        project: label == '' ? getProjectName(build) : label,
         queuedAt: build.queueTime ? new Date(build.queueTime) : new Date(),
         reason: build.reason,
         requestedFor: build.requestedFor ? build.requestedFor.displayName : '',
@@ -306,7 +312,8 @@ function VSTSRestBuilds() {
         status: color,
         statusText: text,
         timeline: build._links.timeline ? build._links.timeline.href : '',
-        url: webUrl
+        url: webUrl,
+        priority: priority
       };
 
       // Only show queued builds if we're told to
