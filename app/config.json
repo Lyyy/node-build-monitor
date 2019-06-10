@@ -1,23 +1,147 @@
+
+
 {
-  "monitor": {
-    "interval": 5000,
-    "numberOfBuilds": 12,
-    "latestBuildOnly": false,
-    "sortOrder": "date",
-    "debug": true
-  },
-  "services": [
-    {
-      "name": "Travis",
-      "configuration": {
-        "slug": "marcells/bloggy"
-      }
+    "monitor": {
+        "interval": 5000,
+        "numberOfBuilds": 20,
+        "latestBuildOnly": false,
+        "sortOrder": "project",
+        "errorsFirst": false,
+        "expandEnvironmentVariables": false,
+        "debug": true
     },
-    {
-      "name": "Travis",
-      "configuration": {
-        "slug": "marcells/node-build-monitor"
-      }
-    }
-  ]
+    "services": [
+        {
+            "name": "Tfs",
+            "configuration": {
+                "label": "WayKonect",
+                "url": "https://dev.azure.com",
+                "collection": "waykonect",
+                "project": "WayKonect - Application Conducteur",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams": "&definitions=1,2,3&maxBuildsPerDefinition=1",
+                "includeQueued": true,
+                "showBuildStep": true
+            }
+        },
+        {
+            "name": "Tfs",
+            "configuration": {
+                "label": "InstaKonect",
+                "url": "https://dev.azure.com",
+                "collection": "waykonect",
+                "project": "WayKonect - Application Installateur",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams": "&definitions=4,5,6&maxBuildsPerDefinition=1",
+                "includeQueued": true,
+                "showBuildStep": true
+            }
+        },
+        {
+            "name": "Tfs",
+            "configuration": {
+                "url": "https://dev.azure.com",
+                "collection": "waykonect",
+                "project": "AppHolder - Android",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams": "&definitions=11,12,13&maxBuildsPerDefinition=1",
+                "includeQueued": true,
+                "showBuildStep": true
+            }
+        },
+        {
+            "name": "Tfs",
+            "configuration": {
+                "url": "https://dev.azure.com",
+                "collection": "waykonect",
+                "project": "AppHolder - iOS",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams": "&definitions=14,15,16,17&maxBuildsPerDefinition=1",
+                "includeQueued": true,
+                "showBuildStep": true
+            }
+        },
+        {
+            "name": "TfsRelease",
+            "configuration": {
+                "priority" : 1,
+                "label": "HockeyApp | WayKonect",
+                "project": "WayKonect - Application Conducteur",
+                "instance": "vsrm.dev.azure.com/waykonect",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
+                "groupbyrelease": true
+            }
+        },
+        {
+            "name": "TfsRelease",
+            "configuration": {
+                "priority" : 1,
+                "label": "Stores | WayKonect",
+                "project": "WayKonect - Application Conducteur",
+                "instance": "vsrm.dev.azure.com/waykonect",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams" : "&definitionId=2&latestAttemptsOnly=true&$top=1",
+                "groupbyrelease": true
+            }
+        },
+        {
+            "name": "TfsRelease",
+            "configuration": {
+                "priority" : 1,
+                "label": "HockeyApp | InstaKonect",
+                "project": "WayKonect - Application Installateur",
+                "instance": "vsrm.dev.azure.com/waykonect",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
+                "groupbyrelease": true
+            }
+        },
+        {
+            "name": "TfsRelease",
+            "configuration": {
+                "priority" : 1,
+                "label": "Stores | InstaKonect",
+                "project": "WayKonect - Application Installateur",
+                "instance": "vsrm.dev.azure.com/waykonect",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams" : "&definitionId=2&latestAttemptsOnly=true&$top=1",
+                "groupbyrelease": true
+            }
+        },
+        {
+            "name": "TfsRelease",
+            "configuration": {
+                "priority" : 1,
+                "label": "HockeyApp | AppHolder - Android",
+                "project": "AppHolder - Android",
+                "instance": "vsrm.dev.azure.com/waykonect",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
+                "groupbyrelease": true
+            }
+        },
+        {
+            "name": "TfsRelease",
+            "configuration": {
+                "priority" : 1,
+                "label": "HockeyApp | AppHolder - iOS",
+                "project": "AppHolder - iOS",
+                "instance": "vsrm.dev.azure.com/waykonect",
+                "username": "florian@waykonect.com",
+                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
+                "groupbyrelease": true
+            }
+        }
+    ]
 }
