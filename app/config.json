@@ -1,5 +1,3 @@
-
-
 {
     "monitor": {
         "interval": 5000,
@@ -22,7 +20,7 @@
                 "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
                 "queryparams": "&definitions=1,2,3&maxBuildsPerDefinition=1",
                 "includeQueued": true,
-                "showBuildStep": true
+                "showBuildStep": false
             }
         },
         {
@@ -36,7 +34,7 @@
                 "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
                 "queryparams": "&definitions=4,5,6&maxBuildsPerDefinition=1",
                 "includeQueued": true,
-                "showBuildStep": true
+                "showBuildStep": false
             }
         },
         {
@@ -49,7 +47,7 @@
                 "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
                 "queryparams": "&definitions=11,12,13&maxBuildsPerDefinition=1",
                 "includeQueued": true,
-                "showBuildStep": true
+                "showBuildStep": false
             }
         },
         {
@@ -62,7 +60,7 @@
                 "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
                 "queryparams": "&definitions=14,15,16,17&maxBuildsPerDefinition=1",
                 "includeQueued": true,
-                "showBuildStep": true
+                "showBuildStep": false
             }
         },
         {

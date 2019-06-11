@@ -34,9 +34,9 @@ define(['ko', 'notification', 'BuildViewModel', 'OptionsViewModel'], function (k
             }
         };
 
-        var getBuildById = function (id) {
+        var getBuildByUid = function (uid) {
             return self.builds().filter(function (build) {
-                return build.id() === id;
+                return build.project() + "/" + build.id() === uid;
             })[0];
         };
 
@@ -84,7 +84,7 @@ define(['ko', 'notification', 'BuildViewModel', 'OptionsViewModel'], function (k
 
             changes.removed.forEach(function (build) {
                 self.builds.remove(function (item) {
-                    return item.id() === build.id;
+                    return item.project() + "/" + item.id() === build.project + "/" + build.id;
                 });
             });
 
@@ -93,7 +93,7 @@ define(['ko', 'notification', 'BuildViewModel', 'OptionsViewModel'], function (k
             });
 
             changes.updated.forEach(function (build) {
-                var vm = getBuildById(build.id);
+                var vm = getBuildByUid(build.project + "/" + build.id);
                 vm.update(build);
 
                 if (build.status === 'Red' && matchesToNotificationFilter(build)) {
@@ -108,8 +108,8 @@ define(['ko', 'notification', 'BuildViewModel', 'OptionsViewModel'], function (k
                 }
             });
 
-            changes.order.forEach(function (id, index) {
-                var build = getBuildById(id);
+            changes.order.forEach(function (uid, index) {
+                var build = getBuildByUid(uid);
                 var from = self.builds.indexOf(build);
 
                 if (from !== index) {

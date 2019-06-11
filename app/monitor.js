@@ -107,21 +107,21 @@ var async = require('async'),
                 removed: [],
                 updated: []
             },
-            getById = function (builds, id) {
+            getById = function (builds, uid) {
                 return builds.filter(function (build) {
-                    return build.id === id;
+                    return build.project + "/" + build.id === uid;
                 })[0];
             };
 
-        var currentBuildIds = currentBuilds.map(function (build) { return build.id; });
-        var newBuildIds = newBuilds.map(function (build) { return build.id; });
+        var currentBuildUids = currentBuilds.map(function (build) { return build.project + "/" + build.id; });
+        var newBuildUids = newBuilds.map(function (build) { return build.project + "/" + build.id; });
 
-        newBuildIds.forEach(function (newBuildId) {
-            if (currentBuildIds.indexOf(newBuildId) === -1) {
+        newBuildUids.forEach(function (newBuildId) {
+            if (currentBuildUids.indexOf(newBuildId) === -1) {
                 changes.added.push(getById(newBuilds, newBuildId));
             }
 
-            if (currentBuildIds.indexOf(newBuildId) >= 0) {
+            if (currentBuildUids.indexOf(newBuildId) >= 0) {
                 var currentBuild = getById(currentBuilds, newBuildId);
                 var newBuild = getById(newBuilds, newBuildId);
 
@@ -131,13 +131,13 @@ var async = require('async'),
             }
         });
 
-        currentBuildIds.forEach(function (currentBuildId) {
-            if (newBuildIds.indexOf(currentBuildId) === -1) {
+        currentBuildUids.forEach(function (currentBuildId) {
+            if (newBuildUids.indexOf(currentBuildId) === -1) {
                 changes.removed.push(getById(currentBuilds, currentBuildId));
             }
         });
 
-        changes.order = newBuildIds;
+        changes.order = newBuildUids;
 
         return changes;
     },
