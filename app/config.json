@@ -18,7 +18,7 @@
                 "project": "WayKonect - Application Conducteur",
                 "username": "florian@waykonect.com",
                 "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
-                "queryparams": "&definitions=1,2,3&maxBuildsPerDefinition=1",
+                "queryparams": "&definitions=18,19,20&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
             }
@@ -32,7 +32,7 @@
                 "project": "WayKonect - Application Installateur",
                 "username": "florian@waykonect.com",
                 "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
-                "queryparams": "&definitions=4,5,6&maxBuildsPerDefinition=1",
+                "queryparams": "&definitions=22,23,24&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
             }
