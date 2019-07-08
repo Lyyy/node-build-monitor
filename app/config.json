@@ -17,7 +17,7 @@
                 "collection": "waykonect",
                 "project": "WayKonect - Application Conducteur",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams": "&definitions=18,19,20&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
@@ -31,7 +31,7 @@
                 "collection": "waykonect",
                 "project": "WayKonect - Application Installateur",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams": "&definitions=22,23,24&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
@@ -44,7 +44,7 @@
                 "collection": "waykonect",
                 "project": "AppHolder - Android",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams": "&definitions=11,12,13&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
@@ -57,7 +57,7 @@
                 "collection": "waykonect",
                 "project": "AppHolder - iOS",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams": "&definitions=14,15,16,17&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
@@ -71,7 +71,7 @@
                 "project": "WayKonect - Application Conducteur",
                 "instance": "vsrm.dev.azure.com/waykonect",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
                 "groupbyrelease": true
             }
@@ -84,7 +84,7 @@
                 "project": "WayKonect - Application Conducteur",
                 "instance": "vsrm.dev.azure.com/waykonect",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams" : "&definitionId=2&latestAttemptsOnly=true&$top=1",
                 "groupbyrelease": true
             }
@@ -97,7 +97,7 @@
                 "project": "WayKonect - Application Installateur",
                 "instance": "vsrm.dev.azure.com/waykonect",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
                 "groupbyrelease": true
             }
@@ -110,7 +110,7 @@
                 "project": "WayKonect - Application Installateur",
                 "instance": "vsrm.dev.azure.com/waykonect",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams" : "&definitionId=2&latestAttemptsOnly=true&$top=1",
                 "groupbyrelease": true
             }
@@ -123,7 +123,7 @@
                 "project": "AppHolder - Android",
                 "instance": "vsrm.dev.azure.com/waykonect",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
                 "groupbyrelease": true
             }
@@ -136,7 +136,7 @@
                 "project": "AppHolder - iOS",
                 "instance": "vsrm.dev.azure.com/waykonect",
                 "username": "florian@waykonect.com",
-                "pat": "dp7bhchb4qvuqhewrsuhm4nropy3oqwkuofiju6qkudep2br2mzq",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams" : "&definitionId=1&latestAttemptsOnly=true&$top=1",
                 "groupbyrelease": true
             }
