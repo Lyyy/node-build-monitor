@@ -1,7 +1,7 @@
 {
     "monitor": {
         "interval": 5000,
-        "numberOfBuilds": 20,
+        "numberOfBuilds": 24,
         "latestBuildOnly": false,
         "sortOrder": "project",
         "errorsFirst": false,
@@ -59,6 +59,34 @@
                 "username": "florian@waykonect.com",
                 "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
                 "queryparams": "&definitions=14,15,16,17&maxBuildsPerDefinition=1",
+                "includeQueued": true,
+                "showBuildStep": false
+            }
+        },
+        {
+            "name": "Tfs",
+            "configuration": {
+                "label": "Swagger Client",
+                "url": "https://dev.azure.com",
+                "collection": "waykonect",
+                "project": "Swagger Client",
+                "username": "florian@waykonect.com",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
+                "queryparams": "&definitions=59,60&maxBuildsPerDefinition=1",
+                "includeQueued": true,
+                "showBuildStep": false
+            }
+        },
+        {
+            "name": "Tfs",
+            "configuration": {
+                "label": "Fleet Connect",
+                "url": "https://dev.azure.com",
+                "collection": "waykonect",
+                "project": "ASP.NET",
+                "username": "florian@waykonect.com",
+                "pat": "z65ojwn5z7pkpkokzfg53x5dsdr7sq4rqj2okp5dbvle3imuwoqa",
+                "queryparams": "&definitions=38,40,41&maxBuildsPerDefinition=1",
                 "includeQueued": true,
                 "showBuildStep": false
             }
