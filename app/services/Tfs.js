@@ -35,7 +35,7 @@ function VSTSRestBuilds() {
     failed:             'failed',
     canceled:           'canceled'
   });
-
+  
   /** This object is the representation of statusFilter mentioned in the docs
    * @private
    * @see https://www.visualstudio.com/en-us/docs/integrate/api/build/builds
@@ -48,13 +48,13 @@ function VSTSRestBuilds() {
     notStarted: 'notStarted',
     all:        'all',
   });
-
+  
   const timelineRecordState = Object.freeze({
     completed:  'completed',
     inProgress: 'inProgress',
     pending:    'pending'
   });
-
+  
   /**
    * This object defines the color scheme used.
    * @private
@@ -71,7 +71,7 @@ function VSTSRestBuilds() {
     notStarted:         'Gray',
     all:                'Gray'
   });
-
+  
   /**
    * This object defines the compatable api versions that we are allowed to use
    * @private
@@ -81,7 +81,7 @@ function VSTSRestBuilds() {
     '4.1':      '4.1',
     undefined:  '2.0'
   });
-
+  
   /**
    * @typedef {Object} Build
    * @property {string} definition Build definition id
@@ -101,14 +101,14 @@ function VSTSRestBuilds() {
    * @property {string} url URL of the project
    * @property {int} priority display priority
    */
-
+  
   /**
    * It is a node-style callback.
    * @callback buildsInfoRequestCallback
    * @param {Error|null} err It is an instance of Error
    * @param {Array<Build>} listOfBuilds It is an array of {@link Build}
    */
-
+  
   /**
    * It exposes the API needed by the application to check the status of builds.
    * @name check
@@ -127,7 +127,7 @@ function VSTSRestBuilds() {
     callback('incomplete configuration');
     return;
   };
-
+  
   /**
    * @typedef {Object} VSTSRestBuildsConfiguration
    * @property {string} url VS Team Services account
@@ -144,7 +144,7 @@ function VSTSRestBuilds() {
    * @property {string} label Replace build name with label
    * @property {int} priority Build priority
    */
-
+  
   /**
    * It exposes the API needed by the application to provide
    *  configuration parameters.
@@ -177,7 +177,7 @@ function VSTSRestBuilds() {
 
     console.log(config,apiVersion);
   };
-
+  
   /**
    * @private
    * @param {buildsInfoRequestCallback} cb Callback which handles the
@@ -191,9 +191,9 @@ function VSTSRestBuilds() {
         Authorization: `Basic ${basicAuth}`,
       },
     };
-
+    
     // Set up our dependency tree, similar to angular
-    // https://caolan.github.io/async/docs.html#autoInject
+    // http://caolan.github.io/async/v2/docs.html#autoInject
     async.autoInject({
       // ### 1. Get the list of builds ###
       get_builds: (callback) => {
@@ -221,9 +221,10 @@ function VSTSRestBuilds() {
       get_build_steps: (merge_builds, callback) => {
         // Only get the build step if we are allowed to
         if (!showBuildStep) { callback(null, merge_builds); return; }
-        async.map(merge_builds, (build, callback) => {
-          getLatestBuildStep(build, callback);
-        }, (err, results) => {
+        
+        // http://caolan.github.io/async/v2/docs.html#map
+        // async.map( collection, async function(collection), callback)
+        async.map(merge_builds, getLatestBuildStep, (err, results) => {
           callback(null, results);
         });
       }
@@ -231,8 +232,8 @@ function VSTSRestBuilds() {
       // Pass back to the monitor app
       callback(err, results.get_build_steps);
     });
-
-
+    
+    
     /**
      * Transforms the data received from the request to VSTS REST API
      * @private
@@ -257,7 +258,7 @@ function VSTSRestBuilds() {
 
       callback(null, transformedData);
     };
-
+  
     /**
      * The function transforms the data from VSTS API to
      *  the accepted by callback
@@ -325,13 +326,14 @@ function VSTSRestBuilds() {
       return result;
     };
   };
-
+  
   /**
    * This function makes an individual API call for each build we need
-   *  to get the previous version for
+   *  to get the previous version for.
    * @private
    * @param {buildsInfoRequsetCallback} callback Callback which handles the
-   *  requested build information
+   *  requested build information. Each build *must* be returned in the callback,
+   *  whether its been changed or not.
    */
   const getPreviousBuilds = (currentBuilds, callback) => {
     async.map(previousBuildsToGet, (build, callback) => {
@@ -375,7 +377,7 @@ function VSTSRestBuilds() {
       previousBuildsToGet = [];
     });
   };
-
+  
   /**
    * This function gets the most recent timeline record (aka step) for a build
    * @private
@@ -385,10 +387,10 @@ function VSTSRestBuilds() {
     const timelineURL = build.timeline;
     if (!timelineURL || timelineURL === '') {
       console.log("no timeline url");
-      callback(null);
+      callback(null, build);
       return;
     }
-
+    
     const apiUrl = timelineURL;
     const options = {
       url : apiUrl,
@@ -396,22 +398,33 @@ function VSTSRestBuilds() {
         Authorization: `Basic ${basicAuth}`,
       },
     };
-
+    
     request.makeRequest(options, (err, body) => {
-      if (err) { callback(null); return; }
-      if (!(body && body.records)) { callback(null); return; }
-
+      if (err) {
+        console.log("getLatestBuildStep:", err);
+        callback(null, build);
+        return;
+      }
+      
+      if (!(body && body.records)) {
+        console.log("getLatestBuildStep invalid Body", body);
+        callback(null, build);
+        return;
+      }
+      
       // As of API version 2.0 there is no better way of doing this, we *have* to retrieve everything
       let records = body.records.sort( (a, b) => {
         return a.order - b.order;
       });
-
+      
       for (let key in records) {
         let record = records[key];
         if (record.state === timelineRecordState.inProgress) {
           build.statusText += ' - ' + record.name;
         }
       }
+      
+      // Return our modified build
       callback(null, build);
     });
   };

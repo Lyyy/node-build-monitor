@@ -29,6 +29,10 @@ __Here's a demo:__ [http://builds.mspi.es](http://builds.mspi.es) <sub><sup>([ot
 - [Buildkite](https://buildkite.com/) <sub><sup>([Configuration](#buildkite))</sup></sub>
 - [Bitrise](https://bitrise.io) <sub><sup>([Configuration](#bitrise))</sup></sub>
 - [CCTray](https://sourceforge.net/projects/ccnet/) <sub><sup>([Configuration](#cctray))</sup></sub>
+- [Shippable](https://shippable.com/) <sub><sup>([Configuration](#shippable))</sup></sub>
+- [PRTG](https://www.paessler.com/prtg) <sub><sup>([Configuration](#prtg))</sup></sub>
+- [Circle CI](https://www.circleci.com) <sub><sup>([Configuration](#circleci))</sup></sub>
+- [Drone CI](https://www.drone.io) <sub><sup>([Configuration](#drone-ci))</sup></sub>
 
 Feel free to make a [Fork](https://github.com/marcells/node-build-monitor/fork) of this repository and add another service.
 
@@ -166,7 +170,8 @@ Supports the [TeamCity](https://www.jetbrains.com/teamcity/) build service.
     "authentication": "ntlm",
     "username": "teamcity_username",
     "password": "teamcity_password",
-    "useGuest": true
+    "useGuest": true,
+    "reportFailedToStart": true
   }
 }
 ```
@@ -180,6 +185,7 @@ Supports the [TeamCity](https://www.jetbrains.com/teamcity/) build service.
 | `username`              | Your TeamCity user name (if required)
 | `password`              | Your TeamCity password (if required)
 | `useGuest`              | Uses the guest user (if required)
+| `reportFailedToStart`   | Causes "Failed to Start" builds to be reported as build failures.
 
 #### Azure DevOps and Team Foundation Server Builds
 
@@ -226,6 +232,7 @@ Supports Azure Piplines, the [Azure DevOps](https://azure.microsoft.com/services
 {
   "name": "TfsRelease",
   "configuration": {
+    "protocol": "protocol",
     "project": "projectname",
     "instance": "instance",
     "username": "username",
@@ -238,6 +245,7 @@ Supports Azure Piplines, the [Azure DevOps](https://azure.microsoft.com/services
 
 | Setting          | Description
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------
+| `protocol`       | Use HTTP or HTTPS will default to HTTPS if it is not set
 | `project`        | Team project ID or name
 | `instance`       | Azure DevOps account without `https://` (dev.azure.com/youraccount/yourcollection) or TFS server (tfs-server:8080/tfs/yourcollection) including collection.
 | `username`       | Username used to login
@@ -479,6 +487,106 @@ Supports CCTray format. CCTray is part of [CruiseControl.NET](http://www.cruisec
 | Setting      | Description
 |--------------|--------------------------------------------------------------------------------------------
 | `url`        | Url of CCTray feed.
+
+#### Shippable
+
+Supports the [Shippable](https://shippable.com/) build service.
+
+```json
+{
+  "name": "Shippable",
+  "configuration": {
+    "url": "https://api.shippable.com",
+    "token": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeee",
+    "projects": "123456789012345678901234,098765432109876543210987,...",
+    "branch": "master",
+    "limit": 12
+  }
+}
+```
+
+| Setting      | Description
+|--------------|--------------------------------------------------------------------------------------------
+| `url`        | Shippable API URL (default `https://api.shippable.com`)
+| `token`      | Shippable API token (can be generated under Account settings)
+| `projects`   | Comma separated list of Shippable project IDs to be used
+| `branch`     | The branch to be monitored (all branches if not specified)
+| `limit`      | Limit the number of returned results from the Shippable API
+
+#### PRTG
+
+Supports the [PRTG](https://www.paessler.com/prtg) monitoring service.
+
+```json
+{
+  "name": "PRTG",
+  "configuration": {
+    "url": "https://myprtg.myserver",
+    "sensorId": "1234",
+    "username": "username",
+    "passhash": "123456789"
+  }
+}
+```
+
+| Setting      | Description
+|--------------|--------------------------------------------------------------------------------------------
+| `url`        | PRTG Service URL (e.g. `https://prtg.mydomain.local`)
+| `sensorId`   | Sensor Identifier
+| `username`   | Name of the user
+| `passhash`   | Passhash of the user (Visible under `Configuration` - `My Account`)
+
+#### CircleCI
+
+Supports the [CircleCI](https://circleci.com) service
+
+```json
+{
+  "name": "CircleCI",
+  "configuration": {
+    "debug": false,
+    "token": "somePersonalToken",
+    "vcs": "bitbucket",
+    "username": "marcells",
+    "project": "node-build-monitor",
+    "branch": "master",
+    "groupByWorkflow": true
+  }
+}
+```
+
+| Setting           | Description
+|-------------------|--------------------------------------------------------------------------------------------
+| `debug`           | Should the debug be enabled
+| `token`           | A CircleCI personal token
+| `vcs`             | The VCS type of the project (bitbucket|github)
+| `username`        | Project username or team name
+| `project`         | Project name (usually your repository)
+| `branch`          | Optional. A specific branch to display exclusively.
+| `groupByWorkflow` | Optional. Groups jobs by workflow. Default `false`.
+
+#### Drone CI
+
+Supports the [Drone CI](https://drone.io) build service (version 1.0 minimum)
+
+```json
+{
+  "name": "Drone",
+  "configuration": {
+    "debug": false,
+    "url": "drone.company.io",
+    "token": "s0meDr0neMachineToken",
+    "slug": "marcells/node-build-monitor"
+  }
+}
+```
+
+| Setting          | Description
+|------------------|--------------------------------------------------------------------------------------------
+| `slug`           | The name of the build (usually your GitHub user name and the project name)
+| `url`            | The Drone CI server (cloud.drone.io, ci.company.io...)..
+| `token`          | The Drone access token, to access the builds. We recommand generating a machine token using the Drone CLI command `drone user add build-monitor --machine`.
+| `branch`         | Set this value to filter the builds from a specific branch. (ie. `master`)
 
 ### Run the standalone version (easiest way)
 
